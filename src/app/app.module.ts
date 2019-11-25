@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent, ParentViewContainer, PreviouslySibling } from './app.component';
+import { AppComponent, AnchorViewContainer, PreviouslySibling } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent, ParentViewContainer, PreviouslySibling
+    AppComponent, AnchorViewContainer, PreviouslySibling
   ],
   imports: [
     BrowserModule

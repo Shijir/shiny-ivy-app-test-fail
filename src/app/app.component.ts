@@ -1,8 +1,6 @@
 import { Component, Directive, Optional, SkipSelf, TemplateRef, ViewContainerRef } from '@angular/core';
 
-@Directive({ selector: '[previouslySibling]', host: {
-  '[class.previously-sibling]':'true'
-} })
+@Directive({ selector: '[previouslySibling]' })
 export class PreviouslySibling {
   constructor(
     private template: TemplateRef<any>,
@@ -13,10 +11,10 @@ export class PreviouslySibling {
     }
 }
 
-@Directive({ selector: '[parentViewContainer]', host: {
-  '[class.parent-view-container]':'true'
+@Directive({ selector: '[anchorViewContainer]', host: {
+  '[class.anchor-view-container]':'true'
 } })
-export class ParentViewContainer {
+export class AnchorViewContainer {
   constructor(private vcr: ViewContainerRef) {}
 }
 

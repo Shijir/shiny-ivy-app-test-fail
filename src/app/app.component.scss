@@ -1,3 +1,11 @@
-.parent-view-container {
-    color: green;
+.anchor-view-container {
+    border: 1px solid red;
+    padding: 12px;
+    margin: 12px;
+}
+
+.previously-sibling {
+    border: 1px solid blue;
+    padding: 12px;
+    margin: 12px;
 }
