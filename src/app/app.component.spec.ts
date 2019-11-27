@@ -1,31 +1,25 @@
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { async, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { AppComponent, SomeDirective } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent, SomeDirective
       ],
     }).compileComponents();
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
   it(`should have as title 'shiny-app'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('shiny-app');
+    
+    
+    const someDirectiveDe = fixture.debugElement.query(By.directive(SomeDirective));
+    const someDirective = someDirectiveDe.injector.get(SomeDirective);
+
+    expect(someDirective.answer).toBe(42);
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('shiny-app app is running!');
-  });
+
 });

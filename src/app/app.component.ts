@@ -1,21 +1,16 @@
-import { Component, Directive, Optional, SkipSelf, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Component, Directive, Injectable } from '@angular/core';
 
-@Directive({ selector: '[previouslySibling]' })
-export class PreviouslySibling {
-  constructor(
-    private template: TemplateRef<any>,
-    @Optional()
-    @SkipSelf()
-    private vc: ViewContainerRef){
-      vc.createEmbeddedView(template);
-    }
+@Injectable()
+export class SomeService {
+  title = 42;
 }
 
-@Directive({ selector: '[anchorViewContainer]', host: {
-  '[class.anchor-view-container]':'true'
-} })
-export class AnchorViewContainer {
-  constructor(private vcr: ViewContainerRef) {}
+@Directive({ selector: '[someDirective]', providers: [SomeService] })
+export class SomeDirective {
+  answer: number;
+  constructor(public someService: SomeService) {
+    this.answer = someService.title;
+  }
 }
 
 @Component({
