@@ -1,6 +1,10 @@
 import { async, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { AppComponent, SomeDirective } from './app.component';
+import { AppComponent, SomeDirective, SomeService } from './app.component';
+
+export class MockSomeService {
+  title = 24;
+}
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -8,10 +12,16 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent, SomeDirective
       ],
-    }).compileComponents();
+    })
+
+    TestBed.overrideComponent(SomeDirective, {
+      set: { providers: [{ provide: SomeService, useClass: MockSomeService }] },
+    });
+    
+    TestBed.compileComponents();
   }));
 
-  it(`should have as title 'shiny-app'`, () => {
+  it(`should have title from service`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     
     
@@ -20,6 +30,5 @@ describe('AppComponent', () => {
 
     expect(someDirective.answer).toBe(42);
   });
-
 
 });
